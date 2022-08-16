@@ -57,7 +57,7 @@ module.exports = (app) => {
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({
-        mongoUrl: MONGO_URI,
+        mongoUrl: MONGO_URI, // We might nedd to showcase this so it appears o atlas
       }),
     })
   );
