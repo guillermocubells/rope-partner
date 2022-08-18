@@ -95,7 +95,7 @@ router.get("/login", isLoggedOut, (req, res) => {
 });
 
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
   if (!username) {
     return res.status(400).render("auth/login", {
@@ -130,9 +130,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
-        req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        // req.session.user = user;
+        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        return res.redirect(`/user/${user._id}`);
       });
     })
 

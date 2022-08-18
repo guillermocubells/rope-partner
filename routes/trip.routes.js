@@ -19,8 +19,6 @@ router.post("/add", isLoggedIn, (req, res) => {
 
   //   const authorArray = authors.split(",").map((author) => author.trim());
 
-  //  Look in the book model for something that respects ALL of these properties
-
   Trip.create({
     location,
     activity_type,
@@ -38,7 +36,7 @@ router.post("/add", isLoggedIn, (req, res) => {
           new: true,
         }
       ).then((updatedUser) => {
-        console.log("updatedUser:", updatedUser);
+        // console.log("updatedUser:", updatedUser);
         res.render("trip/add-trip", { createdTrip });
       });
     })

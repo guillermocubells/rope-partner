@@ -11,14 +11,14 @@ router.get("/:userId", (req, res) => {
   }
 
   User.findById(req.params.userId)
-    .populate("tripsRented")
+    // .populate("tripsRented")
     .then((user) => {
       if (!user) {
         return res.redirect("/");
       }
 
       //   console.log("possibleUser:", user.tripsRented);
-      res.render("user/personal", {
+      res.render("user/personal.hbs", {
         user: user,
         userId: req.params.userId,
       });

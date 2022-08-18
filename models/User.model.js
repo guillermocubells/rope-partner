@@ -17,12 +17,12 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    }//,
+    }, //,
     // // Maybe for later to display which trips have they rented
     // tripsRented: [
     //   {
     //     type: mongoose.Types.ObjectId,
-    //     ref: "trip",
+    //     ref: "Trip", or "trip"
     //   },
     // ],
   },
@@ -32,6 +32,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
