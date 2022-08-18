@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const { isValidObjectId } = require("mongoose");
 
 router.get("/:userId", (req, res) => {
   // check if it is a valid ObjectId
@@ -9,16 +10,16 @@ router.get("/:userId", (req, res) => {
     return res.redirect("/");
   }
 
-  UserModel.findById(req.params.userId)
-    .populate("booksRented")
-    .then((possibleUser) => {
-      if (!possibleUser) {
+  User.findById(req.params.userId)
+    .populate("tripsRented")
+    .then((user) => {
+      if (!user) {
         return res.redirect("/");
       }
 
-      console.log("possibleUser:", possibleUser.booksRented);
+      //   console.log("possibleUser:", user.tripsRented);
       res.render("user/personal", {
-        user: possibleUser,
+        user: user,
         userId: req.params.userId,
       });
     })
@@ -28,4 +29,4 @@ router.get("/:userId", (req, res) => {
     });
 });
 
-module.exports = userRouter;
+module.exports = router;

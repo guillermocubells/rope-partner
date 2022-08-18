@@ -17,12 +17,12 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    },
-    // Maybe for later to display which participants are
+    }//,
+    // // Maybe for later to display which trips have they rented
     // tripsRented: [
     //   {
     //     type: mongoose.Types.ObjectId,
-    //     ref: "book",
+    //     ref: "trip",
     //   },
     // ],
   },
