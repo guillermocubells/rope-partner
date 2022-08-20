@@ -18,7 +18,7 @@ router.get("/:userId", (req, res) => {
       }
 
       //   console.log("possibleUser:", user.tripsRented);
-      res.render("user/personal.hbs", {
+      res.render("user/personal", {
         user: user,
         userId: req.params.userId,
       });

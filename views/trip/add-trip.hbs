@@ -1,12 +1,11 @@
-<h3>Congratulations, youre trying to make all minds less blurry. I know, title
-  of the app is deceiving, but we are clearing minds that are blurry.
-  :mind-blown:</h3>
+<h3>Please feel free to add a trip, </h3>
 
-<form action="/trip/add" method="POST">
+<form action="/trip/add" method="post">
   <label for="location">
     Location
     <input type="text" id="location" name="location" placeholder="Location" />
   </label>
+  <br />
   <label for="activity_type">
     Activity Type
     <input
@@ -16,12 +15,19 @@
       placeholder="Activity Type"
     />
   </label>
+  <br />
   <label for="level">
     Level
     <input type="text" id="level" name="level" placeholder="Level" />
   </label>
+  <br />
+  <label for="level">
+    Spaces
+    <input type="number" id="spaces" name="spaces" placeholder="Spaces" />
+  </label>
+  <br />
   <label for="description">
-    Level
+    Description
     <input
       type="text"
       id="description"
@@ -29,4 +35,12 @@
       placeholder="Description"
     />
   </label>
-</form>>
+  <br />
+  <button type="submit">Create your trip</button>
+</form>
+
+{{#if createdTrip}}
+  <h4>
+    Thank you for creating
+    <a href="/trip/{{createdTrip._id}}">{{createdTrip.location}}</a></h4>
+{{/if}}

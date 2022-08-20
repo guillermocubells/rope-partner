@@ -1,0 +1,13 @@
+<h1>{{trip.location}}</h1>
+<h2>{{trip.activity_type}}</h2>
+<h3>{{trip.level}}</h3>
+<h3>{{trip.spaces}}</h3>
+<h3>{{trip.description}}</h3>
+
+{{! Acordarse de pasar el validador de log in }}
+{{#if isLoggedIn}}
+  <div>
+    There are some spaces still available in this trip, feel free to rent them
+    out</div>
+  <a ref="/trip/{{trip._ip}}/request">here!</a>
+{{/if}}

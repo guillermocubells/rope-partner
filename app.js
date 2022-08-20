@@ -31,7 +31,7 @@ const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
 const userRouter = require("./routes/user.routes");
-app.use("/trip", userRouter);
+app.use("/user", userRouter);
 
 const tripRouter = require("./routes/trip.routes");
 app.use("/trip", tripRouter);
