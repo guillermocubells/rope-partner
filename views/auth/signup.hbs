@@ -1,15 +1,30 @@
 <form action="/auth/signup" method="POST">
   <label>
     Username
-    <input type="text" name="username" placeholder="Your username" />
+    <input
+      type="text"
+      name="username"
+      placeholder="Your username"
+      value="{{username}}"
+    />
   </label>
   <label>
     Email
-    <input type="text" name="email" placeholder="Your email" />
+    <input
+      type="text"
+      name="email"
+      placeholder="Your email"
+      value="{{email}}"
+    />
   </label>
   <label>
     Password
-    <input type="password" name="password" placeholder="Your password" />
+    <input
+      type="password"
+      name="password"
+      placeholder="Your password"
+      value="{{password}}"
+    />
   </label>
 
   <button type="submit">Submit</button>

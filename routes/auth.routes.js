@@ -24,6 +24,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!username) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Please provide your username.",
+      ...req.body,
     });
   }
   //Checking if the user provides an email
@@ -36,6 +37,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!email.includes("@")) {
     return res.status(400).render("auth/sigup", {
       errorMessage: "Please add a valid email.",
+      ...req.body,
     });
   }
   // Checking if the user password is more than 8 characters long
@@ -93,6 +95,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
           return res.status(400).render("auth/signup", {
             errorMessage:
               "Username need to be unique. The username you chose is already in use.",
+            ...req.body,
           });
         }
         return res
@@ -120,6 +123,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   if (password.length < 8) {
     return res.status(400).render("auth/login", {
       errorMessage: "Your password needs to be at least 8 characters long.",
+      ...req.body,
     });
   }
 
@@ -132,6 +136,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       if (!user) {
         return res.status(400).render("auth/login", {
           errorMessage: "Wrong credentials.",
+          ...req.body,
         });
       }
 
@@ -140,6 +145,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         if (!isSamePassword) {
           return res.status(400).render("auth/login", {
             errorMessage: "Wrong credentials.",
+            ...req.body,
           });
         }
         // req.session.user = user;
