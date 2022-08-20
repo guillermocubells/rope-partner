@@ -3,7 +3,7 @@ const { isValidObjectId } = require("mongoose");
 const Trip = require("../models/Trip.model");
 const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
-
+ 
 // // Getting all the trips
 // router.get("/", (req, res) => {
 //   Trip.find({}).then((trips) => {
@@ -61,7 +61,7 @@ router.get("/:tripId", (req, res) => {
   Trip.findById(tripId).then((trip) => {
     res.render("trip/single-trip", { trip });
   });
-//   Should add a .then and a catch for validation, later on 
+  //   Should add a .then and a catch for validation, later on
 });
 
 // bookRouter.get("/:bookId/request", isLoggedIn, (req, res) => {

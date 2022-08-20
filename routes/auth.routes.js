@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
-const saltRounds = 10;
+const saltRounds = 15;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
@@ -20,13 +20,25 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 router.post("/signup", isLoggedOut, (req, res) => {
   const { username, email, password } = req.body;
-
+  // Checking if the user provides a username
   if (!username) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Please provide your username.",
     });
   }
-
+  //Checking if the user provides an email
+  if (!email) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Please provide an email.",
+    });
+  }
+  // Checking if the user email has an @ symbol
+  if (!email.includes("@")) {
+    return res.status(400).render("auth/sigup", {
+      errorMessage: "Please add a valid email.",
+    });
+  }
+  // Checking if the user password is more than 8 characters long
   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
@@ -45,13 +57,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
   */
 
-  // Search the database for a user with the username submitted in the form
-  User.findOne({ username }).then((found) => {
+  // Search the database for a user with the username or email submitted
+  User.findOne({ $or: [{ username }, { email }] }).then((found) => {
     // If the user is found, send the message username is taken
     if (found) {
-      return res
-        .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+      return res.status(400).render("auth/signup", {
+        errorMessage: "Username or email already taken.",
+      });
     }
 
     // if user is not found, create a new user - start with hashing the password
