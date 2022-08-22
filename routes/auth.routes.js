@@ -82,8 +82,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
       })
       .then((user) => {
         // Bind the user to the session object
-        req.session.user = user;
-        res.redirect("/");
+        req.session.userId = user._id;
+        // res.redirect("/");
+        res.redirect(`/user/${user._id}`); // Need to figure out how to send to the homepage when created account
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
