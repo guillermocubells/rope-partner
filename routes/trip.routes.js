@@ -3,7 +3,7 @@ const { isValidObjectId } = require("mongoose");
 const Trip = require("../models/Trip.model");
 const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
- 
+
 // // Getting all the trips
 // router.get("/", (req, res) => {
 //   Trip.find({}).then((trips) => {
@@ -12,12 +12,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 // });
 
 // Creating a trip -- Acordarse de incluir el validador --> Logged In
-router.get("/add", isLoggedIn, (req, res) => {
+router.get("/add", (req, res) => {
   res.render("trip/add-trip");
 });
 
 // Acordarse de incluir el validor --> Logged In
-router.post("/add", isLoggedIn, (req, res) => {
+router.post("/add", (req, res) => {
   const { location, activity_type, level, spaces, description } = req.body;
   //   console.log("hello");
   //   const authorArray = authors.split(",").map((author) => author.trim());

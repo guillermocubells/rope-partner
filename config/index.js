@@ -53,12 +53,23 @@ module.exports = (app) => {
   // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
   app.use(
     session({
+      name: "hello class",
       secret: process.env.SESSION_SECRET || "super hyper secret key",
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({
         mongoUrl: MONGO_URI, // We might nedd to showcase this so it appears o atlas
+        // Weight wether or not to include a TTL property
       }),
     })
   );
+
+  // Handles logg in on the nav bar
+
+  app.use((req, res, next) => {
+    if (req.session.user) {
+      res.locals.isLoggedIn = true;
+    }
+    next();
+  });
 };

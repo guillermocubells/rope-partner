@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const { isValidObjectId } = require("mongoose");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/:userId", (req, res) => {
+router.get("/:userId", isLoggedIn, (req, res) => {
   // check if it is a valid ObjectId
   const isValidId = isValidObjectId(req.params.userId);
 

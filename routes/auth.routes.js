@@ -31,11 +31,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!email) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Please provide an email.",
+      ...req.body,
     });
   }
   // Checking if the user email has an @ symbol
   if (!email.includes("@")) {
-    return res.status(400).render("auth/sigup", {
+    return res.status(400).render("auth/signup", {
       errorMessage: "Please add a valid email.",
       ...req.body,
     });
@@ -44,6 +45,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
+      ...req.body,
     });
   }
 
@@ -65,6 +67,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     if (found) {
       return res.status(400).render("auth/signup", {
         errorMessage: "Username or email already taken.",
+        ...req.body,
       });
     }
 
@@ -82,7 +85,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       })
       .then((user) => {
         // Bind the user to the session object
-        req.session.userId = user._id;
+        req.session.user = user._id; // maybe userId
         // res.redirect("/");
         res.redirect(`/user/${user._id}`); // Need to figure out how to send to the homepage when created account
       })
@@ -101,7 +104,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         }
         return res
           .status(500)
-          .render("auth/signup", { errorMessage: error.message });
+          .render("auth/signup", { errorMessage: error.message, ...req.body });
       });
   });
 });
@@ -150,7 +153,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           });
         }
         // req.session.user = user;
-        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object, maybe userId check latter
         return res.redirect(`/user/${user._id}`);
       });
     })
@@ -165,7 +168,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
-    //res.clearCookie ("hello class")
+    res.clearCookie("hello class");
     if (err) {
       return res
         .status(500)
