@@ -168,7 +168,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
-    res.clearCookie("hello class");
+    res.clearCookie("hello class");// borrando la cookie si hay algún error
     if (err) {
       return res
         .status(500)

@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+// const mongoose = require("mongoose");
+
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
@@ -17,14 +19,14 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    }, //,
+    },
     // // Maybe for later to display which trips have they rented
-    // tripsRented: [
-    //   {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: "Trip", or "trip"
-    //   },
-    // ],
+    tripsRented: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "trip",
+      },
+    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

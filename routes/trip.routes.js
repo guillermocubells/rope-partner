@@ -12,12 +12,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 // });
 
 // Creating a trip -- Acordarse de incluir el validador --> Logged In
-router.get("/add", (req, res) => {
+router.get("/add", isLoggedIn, (req, res) => {
   res.render("trip/add-trip");
 });
 
 // Acordarse de incluir el validor --> Logged In
-router.post("/add", (req, res) => {
+router.post("/add", isLoggedIn, (req, res) => {
   const { location, activity_type, level, spaces, description } = req.body;
   //   console.log("hello");
   //   const authorArray = authors.split(",").map((author) => author.trim());
@@ -30,25 +30,25 @@ router.post("/add", (req, res) => {
     description,
   })
     // Un posible metodo
-    .then((createdTrip) => {
-      res.render("trip/add-trip", { createdTrip });
-    })
+    // .then((createdTrip) => {
+    //   res.render("trip/add-trip", { createdTrip });
+    // })
 
     // Un posible segundo metodo que combina la creacion y la actualizacion
-    // .then((createdTrip) => {
-    //   User.findByIdAndUpdate(
-    //     req.session.userId,
-    //     {
-    //       $push: { tripsRented: createdTrip._id },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   ).then((updatedUser) => {
-    //     // console.log("updatedUser:", updatedUser);
-    //     res.render("trip/add-trip", { createdTrip });
-    //   });
-    // })
+    .then((createdTrip) => {
+      User.findByIdAndUpdate(
+        req.session.userId,
+        {
+          $push: { tripsRented: createdTrip._id },
+        },
+        {
+          new: true,
+        }
+      ).then((updatedUser) => {
+        // console.log("updatedUser:", updatedUser);
+        res.render("trip/add-trip", { createdTrip });
+      });
+    })
     .catch((err) => {
       console.log("There was an error creating your trip", err);
       res.redirect("/");
