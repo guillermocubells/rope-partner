@@ -36,8 +36,9 @@ router.post("/add", isLoggedIn, (req, res) => {
 
     // Un posible segundo metodo que combina la creacion y la actualizacion
     .then((createdTrip) => {
+      //   console.log(req.session.user); Little bit of debuggin here
       User.findByIdAndUpdate(
-        req.session.userId,
+        req.session.user,
         {
           $push: { tripsRented: createdTrip._id },
         },
@@ -45,7 +46,8 @@ router.post("/add", isLoggedIn, (req, res) => {
           new: true,
         }
       ).then((updatedUser) => {
-        // console.log("updatedUser:", updatedUser);
+        // console.log(req.session.user), some more debugging it ended up being the relationship held with the session
+        console.log("updatedUser:", updatedUser);
         res.render("trip/add-trip", { createdTrip });
       });
     })

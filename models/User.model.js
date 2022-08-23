@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
-// const mongoose = require("mongoose");
-
+const { Types } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
@@ -23,7 +22,7 @@ const userSchema = new Schema(
     // // Maybe for later to display which trips have they rented
     tripsRented: [
       {
-        type: mongoose.Types.ObjectId,
+        type: Types.ObjectId,
         ref: "trip",
       },
     ],
