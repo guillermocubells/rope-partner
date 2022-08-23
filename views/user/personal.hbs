@@ -7,5 +7,17 @@
 
 <div>
   In case you do not know, your id is
-  {{userId}}
+  {{user._id}}
 </div>
+</br>
+<div>
+  Here are some of the trips that you have rented out so far feel free to cancel or update any
+</div>
+
+<ul>
+  {{#each user.tripsRented}}
+    <li>
+      <a href="/trip{{trip._id}}/return">{{location}}</a>
+    </li>
+  {{/each}}
+</ul>

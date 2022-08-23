@@ -12,6 +12,7 @@ router.get("/:userId", isLoggedIn, (req, res) => {
   }
 
   User.findById(req.params.userId)
+    //   .populate({ path: "tripsRented", model: User })
     .populate("tripsRented")
     .then((user) => {
       if (!user) {
