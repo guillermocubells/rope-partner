@@ -28,7 +28,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
   //Checking if the user provides an email
-  if (!email) {
+  if (!email) { 
     return res.status(400).render("auth/signup", {
       errorMessage: "Please provide an email.",
       ...req.body,
