@@ -103,7 +103,7 @@ router.get("/:tripId/request", isLoggedIn, (req, res) => {
 });
 
 // // Acordarse de incluir el validor --> Logged In
-router.get("/:tripId/return", async (req, res) => {
+router.get("/:tripId/return", isLoggedIn, async (req, res) => {
   const { tripId } = req.params;
   const isValidTripId = isValidObjectId(tripId);
 
@@ -118,6 +118,8 @@ router.get("/:tripId/return", async (req, res) => {
     $in: { tripsRented: tripId },
   });
 
+  //   console.log(user);
+
   if (!user) {
     return res.status(400).redirect("/trip/all-trips");
   }
@@ -125,9 +127,6 @@ router.get("/:tripId/return", async (req, res) => {
   await User.findByIdAndUpdate(userId, { $pull: { tripsRented: tripId } });
 
   await Trip.findByIdAndUpdate(tripId, { $inc: { spaces: 1 } });
-  //   // const book = await BookModel.findById(bookId);
-
-  //   // await BookModel.findByIdAndUpdate(bookId, { stock: book.stock + 1 });
 
   res.redirect(`/user/${userId}`);
 

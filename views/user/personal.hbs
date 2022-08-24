@@ -17,7 +17,8 @@
 <ul>
   {{#each user.tripsRented}}
     <li>
-      <a href="/trip{{trip._id}}/return">{{location}}</a>
+        {{location}}
+      <a href="/trip{{trip._id}}/return">return</a>
     </li>
   {{/each}}
 </ul>
