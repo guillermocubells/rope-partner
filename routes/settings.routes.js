@@ -4,6 +4,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const {
   Types: { ObjectId },
 } = require("mongoose");
+const isLoggedOut = require("../middleware/isLoggedOut");
 
 router.get("/", isLoggedIn, (req, res) => {
   res.render("settings/home");
@@ -13,7 +14,7 @@ router.get("/update-user", isLoggedIn, async (req, res) => {
   const user = await User.findById(req.session.user);
   //   console.log(req.session.user);
   //   console.log(user.username);
-  console.log(user);
+  //   console.log(user);
 
   if (!user) {
     return res.redirect("/");
@@ -22,6 +23,8 @@ router.get("/update-user", isLoggedIn, async (req, res) => {
 
   res.render("settings/update-user", { user });
 });
+
+// Updating the user
 
 router.post("/update-user", isLoggedIn, async (req, res) => {
   const { username = "", email = "" } = req.body;
@@ -61,6 +64,34 @@ router.post("/update-user", isLoggedIn, async (req, res) => {
   res.status(400).render("settings/update-user", {
     errorMessage: "New credentials already taken, please try again",
   });
+});
+
+// Deleting the user
+
+router.get("/delete-user", isLoggedIn, async (req, res) => {
+  const user = await User.findById(req.session.user);
+  //   console.log(req.session.user);
+  //   console.log(user.username);
+  console.log(user);
+
+  if (!user) {
+    return res.redirect("/");
+  }
+  //   (req.body = user), console.log(req.body);
+
+  res.render("settings/delete-user", { user });
+});
+
+router.post("/delete-user", (req, res, next) => {
+  //   const { userId } = req.body;
+  //   const { userId } = req.params;
+  User.findByIdAndDelete(req.session.user)
+    .then(() => res.redirect("/auth/logout"))
+    .catch((err) => {
+      console.log("err:", err);
+      res.status(500).redirect("/");
+    });
+  //   console.log(user);
 });
 
 module.exports = router;

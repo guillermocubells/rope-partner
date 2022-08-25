@@ -19,7 +19,7 @@ router.get("/:userId", isLoggedIn, (req, res) => {
         return res.redirect("/");
       }
 
-      console.log("user:", user.tripsRented);
+      //console.log("user:", user.tripsRented);
       res.render("user/personal", {
         user: user,
         userId: req.params.userId,
@@ -30,5 +30,7 @@ router.get("/:userId", isLoggedIn, (req, res) => {
       res.status(500).redirect("/");
     });
 });
+
+
 
 module.exports = router;

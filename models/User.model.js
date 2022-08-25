@@ -26,7 +26,7 @@ const userSchema = new Schema(
         ref: "trip",
       },
     ],
-  },
+  }, 
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,

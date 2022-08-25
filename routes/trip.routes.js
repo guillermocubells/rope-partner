@@ -3,6 +3,9 @@ const { isValidObjectId } = require("mongoose");
 const Trip = require("../models/Trip.model");
 const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const {
+  Types: { ObjectId },
+} = require("mongoose");
 
 // Getting all the trips
 router.get("/", (req, res) => {
@@ -100,10 +103,14 @@ router.get("/:tripId/request", isLoggedIn, (req, res) => {
       });
     });
   });
+  //   console.log(req);
+  console.log(req.params.tripId);
+  console.log(req.session.user);
 });
 
 // // Acordarse de incluir el validor --> Logged In
 router.get("/:tripId/return", isLoggedIn, async (req, res) => {
+  //   console.log(req.params);
   const { tripId } = req.params;
   const isValidTripId = isValidObjectId(tripId);
 
@@ -111,24 +118,29 @@ router.get("/:tripId/return", isLoggedIn, async (req, res) => {
     return res.status(404).redirect("/trip/all-trips");
   }
 
-  const { userId } = req.session;
+  const { user } = req.session;
 
-  const user = await User.findOne({
-    _id: userId,
+  const possibleUser = await User.findOne({
+    _id: user,
     $in: { tripsRented: tripId },
   });
 
-  //   console.log(user);
+  //   console.log(tripId);
+  //   console.log(userId);
 
-  if (!user) {
+  if (!possibleUser) {
     return res.status(400).redirect("/trip/all-trips");
   }
 
-  await User.findByIdAndUpdate(userId, { $pull: { tripsRented: tripId } });
-
+  await User.findByIdAndUpdate(user, {
+    $pull: { tripsRented: tripId },
+  });
+  //maybe something here .to string check Andres videos
+  // _id: { $ne: ObjectId(req.session.user) },
+  //   console.log(ObjectId(tripId))
   await Trip.findByIdAndUpdate(tripId, { $inc: { spaces: 1 } });
 
-  res.redirect(`/user/${userId}`);
+  res.redirect(`/user/${user}`);
 
   //   // UserModel.findOne({
   //   //   _id: req.session.userId,
