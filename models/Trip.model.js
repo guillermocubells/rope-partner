@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { Types } = require("mongoose");
 
-
 const tripSchema = new Schema(
   {
     // These are required, maybe here we can change some stuff related to the user name
@@ -11,25 +10,18 @@ const tripSchema = new Schema(
     },
     activity_type: {
       type: String,
-      enum: [
-        "Climbing",
-        "Alpinism",
-        "Canyoning",
-      ],
+      enum: ["Climbing", "Alpinism", "Canyoning"],
       required: true,
       // I think here you can add somehow default values, check the recipe thing
     },
     level: {
       type: String,
       required: true,
-      enum: [
-        "Rookie",
-        "Intermediate",
-        "Pro",
-      ],
+      enum: ["Rookie", "Intermediate", "Pro"],
     },
     spaces: {
       type: Number,
+      min: 0,
       required: true,
     },
     description: {

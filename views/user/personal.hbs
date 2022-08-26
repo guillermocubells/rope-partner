@@ -1,24 +1,41 @@
-<h1>Hello {{user.username}}</h1>
-
+<h1>Profile</h1>
+<p>Please find below more information about your profile</p>
 <div>
-  Your email is
-  {{user.email}}. Nice to see you today
+  Email:
+  {{user.email}}
 </div>
-
 <div>
-  In case you do not know, your id is
+  Username:
+  {{user.username}}
+</div>
+<div>
+  User Id:
   {{user._id}}
 </div>
-</br>
 <div>
-  Here are some of the trips that you have rented out so far feel free to cancel or update any
+  <h4>Settings</h4>
+  <ul>
+    <li>
+      <a href="/settings/update-user">Feel like updating your profile? Click In
+        this line</a>
+    </li>
+    <li>
+      <a href="/settings/delete-user">Feel like deleting your profile</a>
+    </li>
+  </ul>
+</div>
+<div>
+  {{#if user.tripsRented}}
+    <h4>Booked trips</h4>
+  {{/if}}
 </div>
 
+{{! Display this in a table format if time allows it }}
 <ul>
   {{#each user.tripsRented}}
     <li>
-        {{location}}
-      <a href="/trip/{{_id}}/return">return</a>
+      {{location}}
+      <a href="/trip/{{_id}}/cancel">cancel</a>
     </li>
   {{/each}}
 </ul>

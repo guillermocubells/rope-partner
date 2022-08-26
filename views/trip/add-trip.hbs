@@ -1,5 +1,5 @@
 <h3>Please feel free to add a trip, </h3>
-
+{{! Include the form in a table to give it the right format }}
 <form action="/trip/add" method="post">
   <label for="location">
     Location
@@ -8,22 +8,25 @@
   <br />
   <label for="activity_type">
     Activity Type
-    <input
-      type="text"
-      id="activity_type"
-      name="activity_type"
-      placeholder="Activity Type"
-    />
+    <select id="activity_type" name="activity_type">
+      <option value="Climbing">Climbing</option>
+      <option value="Alpinism">Alpinism</option>
+      <option value="Canyoning">Canyoning</option>
+    </select>
   </label>
   <br />
   <label for="level">
     Level
-    <input type="text" id="level" name="level" placeholder="Level" />
+    <select id="level" name="level">
+      <option value="Rookie">Rookie</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Pro">Pro</option>
+    </select>
   </label>
   <br />
   <label for="level">
     Spaces
-    <input type="number" id="spaces" name="spaces" placeholder="Spaces" />
+    <input type="number" id="spaces" name="spaces" placeholder="Spaces" value="2" />
   </label>
   <br />
   <label for="description">

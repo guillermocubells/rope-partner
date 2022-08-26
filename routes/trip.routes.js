@@ -8,7 +8,7 @@ const {
 } = require("mongoose");
 
 // Getting all the trips
-router.get("/", (req, res) => {
+router.get("/all-trips", (req, res) => {
   Trip.find({}).then((trips) => {
     res.render("trip/all-trips", { trips });
   });
@@ -109,7 +109,7 @@ router.get("/:tripId/request", isLoggedIn, (req, res) => {
 });
 
 // // Acordarse de incluir el validor --> Logged In
-router.get("/:tripId/return", isLoggedIn, async (req, res) => {
+router.get("/:tripId/cancel", isLoggedIn, async (req, res) => {
   //   console.log(req.params);
   const { tripId } = req.params;
   const isValidTripId = isValidObjectId(tripId);
