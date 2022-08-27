@@ -1,15 +1,18 @@
-<ul>
-  {{#each trips}}
-    <div>
-    <h3>{{location}}</h1>
-    <h4>{{activity_type}}</h4>
-    <h5>{{level}}</h5>
-    <h6>{{spaces}}</h6>
-    <div></div>
-    <li>
-      <a href="/trip/{{_id}}">
-        View details
-      </a>
-    </li>
-  {{/each}}
-</ul>
+<div>
+  <ul>
+    {{#each trips}}
+      <div class="alltrips">
+        <li class="alltripsli">
+          <h3>{{location}}</h3>
+          <h4>{{activity_type}}</h4>
+          <h5>{{level}}</h5>
+          <h6>{{spaces}}</h6>
+
+          <a href="/trip/{{_id}}">
+            View details
+          </a>
+        </li>
+      </div>
+    {{/each}}
+  </ul>
+</div>

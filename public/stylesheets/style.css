@@ -36,7 +36,7 @@ h1 {
   color: white;
 }
 
-* {
+.background {
   background-color: #ffc183;
 }
 /* #F5B0CB possible color for some text, es cómo un rosa muy light */
@@ -58,7 +58,7 @@ nav {
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-  /* background: #cddfe4; */
+  background-color: #ffc183;
   padding: 1rem;
 }
 
@@ -147,9 +147,9 @@ label {
 
 /************** Creating a trip **************/
 
-.layoutaddtrip{
+.layoutaddtrip {
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   /* margin: 0 auto; */
   /* justify-content: space-between; */
 }
@@ -167,7 +167,7 @@ label {
   width: 150px;
   margin: 24px 0px 0px 0px;
   padding: 15px;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   color: white;
   border-radius: 6px;
   background-color: 6a8d92;
@@ -175,7 +175,22 @@ label {
 
 /************** Looking into all the trips **************/
 
-
+.alltrips {
+  display: inline-block;
+  /* flex-direction: column; */
+  margin: 20px;
+  padding-bottom: 32px;
+  border-radius: 4;
+  border: black;
+  text-align: left;
+  /* justify-content: space-between; */
+  align-items: center;
+  background: #f5b0cb;
+  border-radius: 4px;
+}
+li {
+  background: transparent;
+}
 
 /************** Properties Landing Page **************/
 
