@@ -7,7 +7,12 @@ const {
 const isLoggedOut = require("../middleware/isLoggedOut");
 
 router.get("/", isLoggedIn, (req, res) => {
-  res.render("settings/home");
+  // res.render("/settings/home");
+  // res.render("./user/personal", {
+  //   user: user,
+  //   userId: req.params.userId,
+  // });
+  res.redirect(`/user/${req.session.user}`)
 });
 
 router.get("/update-user", isLoggedIn, async (req, res) => {

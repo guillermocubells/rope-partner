@@ -39,7 +39,7 @@ h1 {
 .background {
   background-color: #ffc183;
 }
-/* #F5B0CB possible color for some text, es cómo un rosa muy light */
+
 nav {
   max-width: 1000px;
   margin: 0 auto;
@@ -111,38 +111,18 @@ select {
   border: lightgray;
   border-width: 0.05cm;
 }
-select:invalid {
+/* select:invalid {
   color: lightgray;
 }
 .option {
   color: red;
-}
+} */
 
 label {
   font-family: inherit;
   font-size: 0.9em;
   margin: 16px 0px 0px 0px;
   display: inline-block;
-}
-
-.button {
-  font-family: inherit;
-  font-weight: 600;
-  transition-duration: 0.4s;
-  width: 150px;
-  font-size: bold;
-  padding: 15px;
-  margin: 24px 8px 0px 0px;
-  background-color: #f5b0cb;
-  color: #6a8d92;
-  font-size: 1em;
-  border-width: 0;
-  border-radius: 6px;
-  border-color: none;
-}
-.button:hover {
-  background-color: #6a8d92;
-  color: white;
 }
 
 /************** Properties Trip Pages **************/
@@ -425,21 +405,49 @@ label {
 }
 
 .single-trip-level-spaces {
-  width:300px;
+  width: 300px;
   color: #7a5c61;
   display: flex;
 }
-.single-trip-level-space h4{
-  color:white
+.single-trip-level-space h4 {
+  color: white;
 }
 
 .spaces {
   margin: auto;
 }
-.trip-details{
+.trip-details {
   font-family: inherit;
-  color:white;
+  color: white;
   font-weight: 600;
-
 }
+/************** Settings Page **************/
+
+.delete-button {
+  font-family: inherit;
+  font-weight: 600;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: bold;
+  padding: 15px;
+  margin: 24px 8px 0px 0px;
+  background-color: transparent;
+  color: #7a5c61;
+  font-size: 1em;
+  border-width: 0;
+  border-radius: 6px;
+  border-color: none;
+  text-align: center;
+}
+
+.delete-button:hover {
+  background-color: #ccfccb;
+  color: #f5b0cb;
+}
+.account-settings {
+  display: flex;
+}
+
+
+
 /************** Properties Landing Page **************/

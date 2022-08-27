@@ -1,5 +1,9 @@
 <h2>Profile</h2>
-<p>Please find below more information about your profile</p>
+<br />
+<div>
+<div>
+<h4>Details</h4>
+<br />
 <div>
   Email:
   {{user.email}}
@@ -12,30 +16,48 @@
   User Id:
   {{user._id}}
 </div>
-<div>
-  <h4>Settings</h4>
-  <ul>
-    <li>
-      <a href="/settings/update-user">Feel like updating your profile? Click In
-        this line</a>
-    </li>
-    <li>
-      <a href="/settings/delete-user">Feel like deleting your profile</a>
-    </li>
-  </ul>
 </div>
+<div>
+    <br />
+    <h4>Account Settings</h4>
+    <br />
+    <p>Update your profile or delete your account</p>
+    <ul>
+      <div class="account-settings">
+        <li>
+          <a class="button" href="/settings/update-user">Update</a>
+        </li>
+        <li>
+          <a class="delete-button" href="/settings/delete-user">Delete</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+{{! Display this in a table format if time allows it }}
 <div>
   {{#if user.tripsRented}}
+    <br />
     <h4>Booked trips</h4>
+    <br />
+    <p>Feel free to cancel any of your booked trips</p>
+    <br />
   {{/if}}
 </div>
-
-{{! Display this in a table format if time allows it }}
 <ul>
   {{#each user.tripsRented}}
-    <li>
-      {{location}}
-      <a href="/trip/{{_id}}/cancel">cancel</a>
-    </li>
+    <div class="alltrips">
+      <li class="alltripsli">
+        <h2>{{location}}</h2>
+        <br />
+        <div class="color-deep-taupe">
+          <div class="alltrips-subcontent"><h4>{{activity_type}}</h4></div>
+          <div class="alltrips-subcontent"><h5>{{level}}</h5></div>
+          <div class="alltrips-subcontent"><h6>Spaces: {{spaces}}</h6></div>
+        </div>
+        <a class="view-details-button" href="/trip/{{_id}}/cancel">Cancel</a>
+      </li>
+    </div>
   {{/each}}
+  <br />
 </ul>
