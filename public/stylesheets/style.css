@@ -1,12 +1,182 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/************** RESET CSS **************/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-  color: #00b7ff;
+  display: block;
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+/************** Global Properties **************/
+
+body {
+  padding: 50px;
+  font: 14px "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  color: #6a8d92;
+  font-size: 1.2em;
+  font-weight: 800;
+  text-decoration: none;
+  list-style-type: none;
 }
 
 h1 {
-  color: 15px;
+  color: white;
 }
+
+* {
+  background-color: #ffc183;
+}
+/* #F5B0CB possible color for some text, es cómo un rosa muy light */
+nav {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  /* background: #cddfe4; */
+  padding: 1rem;
+}
+
+footer {
+  text-align: left;
+  background-color: var(--primary-bg-color);
+  padding: 1rem;
+}
+
+/************** Form Properties **************/
+
+.formtext {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: ; */
+}
+
+input {
+  font-family: inherit;
+  width: 150px;
+  padding: 8px 8px 8px 16px;
+  margin: 8px 8px 0px 0px;
+  background-color: white;
+  border-radius: 6px;
+  border: lightgray;
+  border-width: 0.05cm;
+}
+::placeholder {
+  color: #d3d3d3;
+  opacity: 1; /* Firefox */
+}
+
+select:invalid {
+  color: lightgray;
+}
+option {
+  color: black;
+}
+select {
+  appearance: none;
+  font-family: inherit;
+  width: 150px;
+  padding: 8px 8px 8px 16px;
+  margin: 8px 8px 0px 0px;
+  background-color: white;
+  border-radius: 6px;
+  border: lightgray;
+  border-width: 0.05cm;
+}
+select:invalid {
+  color: lightgray;
+}
+.option {
+  color: red;
+}
+
+label {
+  font-family: inherit;
+  font-size: 0.9em;
+  margin: 16px 0px 0px 0px;
+  display: inline-block;
+}
+
+.tripbutton {
+  font-family: inherit;
+  font-weight: 600;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: bold;
+  padding: 15px;
+  margin: 24px 8px 0px 0px;
+  background-color: #f5b0cb;
+  color: #6a8d92;
+  font-size: 1em;
+  border-width: 0;
+  border-radius: 6px;
+  border-color: none;
+}
+.tripbutton:hover {
+  background-color: #6a8d92;
+  color: white;
+}
+
+/************** Properties Trip Pages **************/
+
+/************** Creating a trip **************/
+
+.layoutaddtrip{
+  display: flex;
+  justify-content: flex-start; 
+  /* margin: 0 auto; */
+  /* justify-content: space-between; */
+}
+.singletrip {
+  display: flex;
+  flex-direction: column;
+  font-size: bold;
+  margin-left: 52px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.singletriplink {
+  width: 150px;
+  margin: 24px 0px 0px 0px;
+  padding: 15px;
+  justify-content: flex-start; 
+  color: white;
+  border-radius: 6px;
+  background-color: 6a8d92;
+}
+
+/************** Looking into all the trips **************/
+
+
+
+/************** Properties Landing Page **************/
+
+/************** Properties Setting Page **************/

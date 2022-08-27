@@ -1,49 +1,108 @@
-<h3>Please feel free to add a trip, </h3>
-{{! Include the form in a table to give it the right format }}
-<form action="/trip/add" method="post">
-  <label for="location">
-    Location
-    <input type="text" id="location" name="location" placeholder="Location" />
-  </label>
-  <br />
-  <label for="activity_type">
-    Activity Type
-    <select id="activity_type" name="activity_type">
-      <option value="Climbing">Climbing</option>
-      <option value="Alpinism">Alpinism</option>
-      <option value="Canyoning">Canyoning</option>
-    </select>
-  </label>
-  <br />
-  <label for="level">
-    Level
-    <select id="level" name="level">
-      <option value="Rookie">Rookie</option>
-      <option value="Intermediate">Intermediate</option>
-      <option value="Pro">Pro</option>
-    </select>
-  </label>
-  <br />
-  <label for="level">
-    Spaces
-    <input type="number" id="spaces" name="spaces" placeholder="Spaces" value="2" />
-  </label>
-  <br />
-  <label for="description">
-    Description
-    <input
-      type="text"
-      id="description"
-      name="description"
-      placeholder="Description"
-    />
-  </label>
-  <br />
-  <button type="submit">Create your trip</button>
-</form>
+<h3>Create a trip</h3>
+<br />
+<p>If you are looking for someone to join you on a trip, you are in the right
+  place
+  <br />where you do that. It is pretty simple create your trip and wait for
+  someone to book it</p>
+<br />
+{{!-- <div class="singletrip">
+  <div>
+  {{#if createdTrip}}
+    <h4>
+      Check out your next
+      {{createdTrip.activity_type}}
+      trip!
+    </h4>
+    </div>
+    <div>
+      <a
+        class="singletriplink"
+        href="/trip/{{createdTrip._id}}"
+      >{{createdTrip.location}}</a>
+   </div>
+   </div>
+    <h4>
+      Submit another trip</h4>
+  {{/if}} --}}
 
-{{#if createdTrip}}
-  <h4>
-    Thank you for creating
-    <a href="/trip/{{createdTrip._id}}">{{createdTrip.location}}</a></h4>
-{{/if}}
+{{! Include the form in a table to give it the right format }}
+<div class="layoutaddtrip">
+  <form class="formstyle" action="/trip/add" method="post">
+    <div class="formtext">
+      {{#if createdTrip}}
+      <h4>
+      Submit another trip</h4>
+      {{/if}}
+      <label for="location">
+        Location
+        <br />
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Location"
+        />
+      </label>
+      <label for="activity_type">
+        Type of activity
+        <br />
+        <select id="activity_type" name="activity_type" required>
+          <option value="" disabled selected hidden>- Choose one -</option>
+          <option value="Climbing">Climbing</option>
+          <option value="Alpinism">Alpinism</option>
+          <option value="Canyoning">Canyoning</option>
+        </select>
+      </label>
+      <label for="level">
+        Level
+        <br />
+        <select id="level" name="level" required>
+          <option value="" disabled selected hidden>- Choose one -</option>
+          <option value="Rookie">Rookie</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Pro">Pro</option>
+        </select>
+      </label>
+      <label for="level">
+        Spaces
+        <br />
+        <input
+          type="number"
+          id="spaces"
+          name="spaces"
+          placeholder="Spaces"
+          value="2"
+        />
+      </label>
+      <label for="description">
+        Description
+        <br />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          placeholder="Description"
+        />
+      </label>
+      <button class="tripbutton" type="submit">Create your trip</button>
+    </div>
+  </form>
+  <br />
+  <div class="singletrip">
+  <div>
+  {{#if createdTrip}}
+    <h4>
+      Check out your next
+      {{createdTrip.activity_type}}
+      trip!
+    </h4>
+    </div>
+    <div>
+      <a
+        class="singletriplink"
+        href="/trip/{{createdTrip._id}}"
+      >{{createdTrip.location}}</a>
+   </div>
+   </div>
+  {{/if}}
+</div>
