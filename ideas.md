@@ -32,7 +32,7 @@ GET /auth/register -> Register and click to login if user is already registered
 POST /auth/register /user/userId
 GET /user/:userId
 
-GET /search -> List of trips that are being searched
+GET /search -> List of trips that are being searched --> Maybe for later
 
 GET /trip/:tripId -> Single Trip Information | By types, and by level
 GET /trip/add -> Add a new trip to the collection

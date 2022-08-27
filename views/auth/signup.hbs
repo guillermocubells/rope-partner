@@ -1,6 +1,9 @@
-<form action="/auth/signup" method="POST">
+<div class ="layout errorhandling">
+<form class ="formstyle" action="/auth/signup" method="POST">
+  <div class="formtext">
   <label>
     Username
+   <br />
     <input
       type="text"
       name="username"
@@ -8,10 +11,9 @@
       value="{{username}}"
     />
   </label>
-  </br>
-  </br>
   <label>
-    Email
+    Email   
+    <br />
     <input
       type="text"
       name="email"
@@ -19,10 +21,9 @@
       value="{{email}}"
     />
   </label>
-  </br>
-  </br>
   <label>
     Password
+   <br />
     <input
       type="password"
       name="password"
@@ -30,11 +31,13 @@
       value="{{password}}"
     />
   </label>
-
-  <button type="submit">Submit</button>
+  <button class ="button"type="submit">Submit</button>
+  </div>
 </form>
 </br>
-
+<div class="error">
 {{#if errorMessage}}
   {{errorMessage}}
 {{/if}}
+</div>
+</div>

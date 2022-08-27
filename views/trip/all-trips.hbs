@@ -1,14 +1,24 @@
+<h3>Trips</h3>
+<br />
+<p>If you are looking for trips to go you are in the right place
+  <br />
+  feel free to browse around and book any trip that might interest you
+</p>
+<br />
 <div>
   <ul>
     {{#each trips}}
       <div class="alltrips">
         <li class="alltripsli">
           <h3>{{location}}</h3>
+          <br>
           <h4>{{activity_type}}</h4>
+          <b>
           <h5>{{level}}</h5>
+          <b>
           <h6>{{spaces}}</h6>
 
-          <a href="/trip/{{_id}}">
+          <a class="view-details-button" href="/trip/{{_id}}">
             View details
           </a>
         </li>

@@ -5,28 +5,9 @@
   <br />where you do that. It is pretty simple create your trip and wait for
   someone to book it</p>
 <br />
-{{!-- <div class="singletrip">
-  <div>
-  {{#if createdTrip}}
-    <h4>
-      Check out your next
-      {{createdTrip.activity_type}}
-      trip!
-    </h4>
-    </div>
-    <div>
-      <a
-        class="singletriplink"
-        href="/trip/{{createdTrip._id}}"
-      >{{createdTrip.location}}</a>
-   </div>
-   </div>
-    <h4>
-      Submit another trip</h4>
-  {{/if}} --}}
 
 {{! Include the form in a table to give it the right format }}
-<div class="layoutaddtrip">
+<div class="layout">
   <form class="formstyle" action="/trip/add" method="post">
     <div class="formtext">
       {{#if createdTrip}}
@@ -84,7 +65,7 @@
           placeholder="Description"
         />
       </label>
-      <button class="tripbutton" type="submit">Create your trip</button>
+      <button class="button" type="submit">Create your trip</button>
     </div>
   </form>
   <br />
@@ -99,9 +80,9 @@
     </div>
     <div>
       <a
-        class="singletriplink"
+        class="view-details-button"
         href="/trip/{{createdTrip._id}}"
-      >{{createdTrip.location}}</a>
+      >View Details</a>
    </div>
    </div>
   {{/if}}

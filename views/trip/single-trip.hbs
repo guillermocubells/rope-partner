@@ -1,13 +1,21 @@
-<h1>{{trip.location}}</h1>
-<h2>{{trip.activity_type}}</h2>
-<h3>{{trip.level}}</h3>
-<h3>{{trip.spaces}}</h3>
-<h3>{{trip.description}}</h3>
+<div class="single-trip-header">
+  <div><h1>Location - {{trip.location}}</h1></div>
+  <div><h5 class="climbingtag">{{trip.activity_type}}</h5></div>
+</div>
+<br />
+<div>
+  <h4>Level of activity:</h4>
+  <h4>{{trip.level}}</h4>
+</div>
+<br />
+<div class ="spaces">
+  <h4>Spaces available:</h4>
+  <p>{{trip.spaces}}</p>
+</div>
+<br />
+<p>{{trip.description}}</p>
 
 {{! Acordarse de pasar el validador de log in }}
 {{#if isLoggedIn}}
-  <div>
-    There are some spaces still available in this trip, feel free to rent them
-    out</div>
-  <a href="/trip/{{trip._id}}/request">here!</a>
+  <a class="button" href="/trip/{{trip._id}}/request">Book Trip</a>
 {{/if}}

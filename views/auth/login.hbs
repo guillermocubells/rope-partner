@@ -1,22 +1,25 @@
-<form action="/auth/login" method="POST">
+<div class="layout errorhandling">
+<form class =action="/auth/login" method="POST">
+  <div class ="formtext">
   <label>
     Username
+    <br />
     <input type="text" name="username" placeholder="Your username" />
   </label>
-  </br>
-  </br>
   <label>
     Password
+    <br />
     <input type="password" name="password" placeholder="Your password" />
   </label>
-  </br>
-  </br>
 
-  <button type="submit">Log In</button>
+  <button class ="button" type="submit">Log In</button>
   </br>
   </br>
+  </div>
 </form>
-
+<div class ="error">
 {{#if errorMessage}}
   {{errorMessage}}
 {{/if}}
+</div>
+</div>
