@@ -9,6 +9,10 @@ router.get("/:userId", isLoggedIn, (req, res) => {
 
   if (!isValidId) {
     return res.redirect("/");
+  } 
+  // Redirecting in case another user is logged in and wants to access your account
+  if (req.session.user != req.params.userId) {
+    return res.redirect("/");
   }
 
   User.findById(req.params.userId)

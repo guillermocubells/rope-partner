@@ -182,7 +182,7 @@ label {
   display: inline-block;
   /* flex-direction: column; */
   margin: 20px;
-  color: white;
+  color: #ccfccb;
   padding: 24px;
   border-radius: 4;
   text-align: left;
@@ -191,6 +191,9 @@ label {
   border-radius: 4px;
 }
 
+.color-deep-taupe {
+  color: #7a5c61;
+}
 /************** Properties Landing Page **************/
 
 /************** Properties Setting Page **************/
@@ -398,24 +401,45 @@ label {
   background: #f5b0cb;
   border-radius: 4px;
 }
+.alltrips-subcontent {
+  margin-top: 4px;
+}
 /************** Sigle trip property **************/
 
+.single-trip-header {
+  display: flex;
+  flex-direction: row;
+
+  /* justify-content: flex-start; */
+  align-items: center;
+}
 .climbingtag {
-  margin-top: 8px;
+  margin-left: 32px;
   background: white;
-  color: #7A5C61;
+  color: #7a5c61;
   border-radius: 4px;
-  border:2px solid #ccfccb;
+  border: 2px solid #ccfccb;
   padding: 5px 8px 5px 8px;
   text-align: center;
   width: 100px;
 }
 
-.single-trip-header{
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.single-trip-level-spaces {
+  width:300px;
+  color: #7a5c61;
+  display: flex;
+}
+.single-trip-level-space h4{
+  color:white
 }
 
+.spaces {
+  margin: auto;
+}
+.trip-details{
+  font-family: inherit;
+  color:white;
+  font-weight: 600;
 
+}
 /************** Properties Landing Page **************/

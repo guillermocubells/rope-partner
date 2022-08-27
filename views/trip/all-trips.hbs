@@ -1,4 +1,4 @@
-<h3>Trips</h3>
+<h2>Trips</h2>
 <br />
 <p>If you are looking for trips to go you are in the right place
   <br />
@@ -10,14 +10,13 @@
     {{#each trips}}
       <div class="alltrips">
         <li class="alltripsli">
-          <h3>{{location}}</h3>
-          <br>
-          <h4>{{activity_type}}</h4>
-          <b>
-          <h5>{{level}}</h5>
-          <b>
-          <h6>{{spaces}}</h6>
-
+          <h2>{{location}}</h2>
+          <br />
+          <div class="color-deep-taupe">
+            <div class="alltrips-subcontent"><h4>{{activity_type}}</h4></div>
+            <div class="alltrips-subcontent"><h5>{{level}}</h5></div>
+            <div class="alltrips-subcontent"><h6>Spaces: {{spaces}}</h6></div>
+          </div>
           <a class="view-details-button" href="/trip/{{_id}}">
             View details
           </a>
