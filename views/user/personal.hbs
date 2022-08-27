@@ -1,6 +1,6 @@
 <h2>Profile</h2>
 <br />
-<div>
+<div class="profile-layout">
 <div>
 <h4>Details</h4>
 <br />
@@ -17,15 +17,14 @@
   {{user._id}}
 </div>
 </div>
-<div>
-    <br />
+<div class="account-settings-margin">
     <h4>Account Settings</h4>
     <br />
-    <p>Update your profile or delete your account</p>
+    <p>Update your account:</p>
     <ul>
       <div class="account-settings">
         <li>
-          <a class="button" href="/settings/update-user">Update</a>
+          <a class="delete-button"href="/settings/update-user">Update</a>
         </li>
         <li>
           <a class="delete-button" href="/settings/delete-user">Delete</a>

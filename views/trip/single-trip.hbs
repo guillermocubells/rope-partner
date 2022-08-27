@@ -1,11 +1,11 @@
-<div>
+<div class="general-single-trip">
   <div class="single-trip-header">
-    <div><h2>Location - {{trip.location}}</h2></div>
+    <div class="single-trip-tittle"><h2>Location - {{trip.location}}</h2></div>
     <div><h5 class="climbingtag">{{trip.activity_type}}</h5></div>
   </div>
   <br />
 
-  <p>{{trip.description}}</p>
+  <p class="color-deep-taupe">{{trip.description}}</p>
   <br />
   <div class="single-trip-level-spaces">
     <div>
@@ -20,6 +20,6 @@
   </div>
   {{! Acordarse de pasar el validador de log in }}
   {{#if isLoggedIn}}
-    <a class="button" href="/trip/{{trip._id}}/request">Book Trip</a>
+    <a class="view-details-button" href="/trip/{{trip._id}}/request">Book Trip</a>
   {{/if}}
 </div>
