@@ -20,6 +20,7 @@
           name="location"
           placeholder="Location"
           maxlength="20"
+          value ="{{location}}"
         />
       </label>
       <label for="activity_type">
@@ -52,12 +53,13 @@
           id="spaces"
           name="spaces"
           placeholder="Spaces (e.g 2)"
+          value="{{spaces}}"
         />
       </label>
       </div>
       <label for="description">Description
         <br />
-        <textarea maxlength="200"type="text"id="description"name="description" placeholder="Description"></textarea>
+        <textarea maxlength="200"type="text"id="description"name="description" placeholder="Description"value="{{description}}"></textarea>
       </label>
       <button class="button" type="submit">Create your trip</button>
     <div class ="error">

@@ -40,6 +40,12 @@ router.post("/add", isLoggedIn, (req, res) => {
       ...req.body,
     });
   }
+  if (description.length < 10) {
+    return res.status(400).render("trip/add-trip", {
+      errorMessage: "Please tell us more about your trip",
+      ...req.body,
+    });
+  }
   Trip.create({
     location,
     activity_type,
