@@ -289,6 +289,28 @@ label {
 .alltrips-subcontent {
   margin-top: 4px;
 }
+
+.create-trip-tag {
+  margin-left: 215px;
+  background: white;
+  color: #7a5c61;
+  border-radius: 4px;
+  border: 2px solid #ccfccb;
+  padding: 8px 8px 8px 8px;
+  text-align: center;
+  width: 150px;
+}
+
+.create-trip-div {
+  display: flex;
+  justify-content: left;
+  align-items: end;
+  font-weight: 300;
+}
+.create-trip-div a {
+  font-size: 1em;
+  font-weight: 600;
+}
 /************** Sigle trip property **************/
 
 .general-single-trip {
@@ -315,7 +337,7 @@ label {
   align-items: center;
 }
 
-.climbingtag {
+.tag {
   margin-left: 32px;
   background: white;
   color: #7a5c61;
@@ -377,6 +399,12 @@ label {
 }
 .profile-layout {
   display: flex;
+}
+
+.profile-details-class {
+  font-weight: 500;
+  color: #7a5c61;
+  margin-top: 16px;
 }
 
 /************** Properties Landing Page **************/
