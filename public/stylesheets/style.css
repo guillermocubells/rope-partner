@@ -230,6 +230,15 @@ label {
   text-align: center;
 }
 
+.divcamelsvg{
+  display: flex;
+}
+.camelsvg{
+  display: flex;
+  margin-top: -60px;
+  margin-left:52px
+}
+
 /************** All the trips property **************/
 
 .alltrips {
