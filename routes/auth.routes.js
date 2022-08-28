@@ -41,6 +41,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
       ...req.body,
     });
   }
+  // Checking if the user has not entered a password
+  if (password.length < 1) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Please provide a password.",
+      ...req.body,
+    });
+  }
   // Checking if the user password is more than 8 characters long
   if (password.length < 8) {
     return res.status(400).render("auth/signup", {

@@ -1,10 +1,6 @@
-<br />
-<h2>Create a trip</h2>
-<br />
-<p>If you are looking for someone to join you on a trip, you are in the right
-  place.
-  <br /> It is pretty simple create your trip and wait for
-  someone to book it</p>
+<h1>Create a trip</h1>
+<p class="color-deep-taupe"> For people to join you. Or otherwise ride
+  <br /> alone as far as your camel can get you</p>
 {{!-- <img src = "/public/images/camel-ride-1.png" alt="My Happy SVG"/> --}}
 <br />
 {{! Include the form in a table to give it the right format }}
@@ -13,7 +9,6 @@
     <div class="formtext">
       <div class="formrows">
       {{#if createdTrip}}
-      <br />
       <h4>
       Submit another trip</h4>
       {{/if}}
@@ -71,7 +66,6 @@
   <div class="singletrip">
   <div>
   {{#if createdTrip}}
-    <br />
     <h4 class="color-deep-taupe">
       Check out your next
       {{createdTrip.activity_type}}
@@ -80,7 +74,7 @@
     </div>
     <div>
       <a
-        class="view-details-button"
+        class="button"
         href="/trip/{{createdTrip._id}}"
       >View Details</a>
    </div>

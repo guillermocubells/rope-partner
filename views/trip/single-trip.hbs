@@ -3,10 +3,9 @@
     <div class="single-trip-tittle"><h2>Location - {{trip.location}}</h2></div>
     <div><h5 class="climbingtag">{{trip.activity_type}}</h5></div>
   </div>
-  <br />
-
-  <p class="color-deep-taupe">{{trip.description}}</p>
-  <br />
+  <div class="single-trip-description ">
+  <p class="color-deep-taupe ">{{trip.description}}</p>
+  </div>
   <div class="single-trip-level-spaces">
     <div>
       <h4>Level of activity</h4>
@@ -20,6 +19,6 @@
   </div>
   {{! Acordarse de pasar el validador de log in }}
   {{#if isLoggedIn}}
-    <a class="view-details-button" href="/trip/{{trip._id}}/request">Book Trip</a>
+    <a class="button" href="/trip/{{trip._id}}/request">Book Trip</a>
   {{/if}}
 </div>

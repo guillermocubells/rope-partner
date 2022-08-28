@@ -1,26 +1,25 @@
-<br />
-<h2>Profile</h2>
-<br />
+<h1>Profile</h1>
 <div class="profile-layout">
 <div>
-<h4>Details</h4>
-<br />
-<div>
-  Email:
+<h3>Details</h3>
+<p>
+<div class="color-deep-taupe">
+ Email:
   {{user.email}}
+
 </div>
-<div>
+<div class="color-deep-taupe">
   Username:
   {{user.username}}
 </div>
-<div>
+<div class="color-deep-taupe">
   User Id:
   {{user._id}}
 </div>
+</p>
 </div>
 <div class="account-settings-margin">
-    <h4>Account Settings</h4>
-    <br />
+    <h3>Account Settings</h3>
     <p>Update your account:</p>
     <ul>
       <div class="account-settings">
@@ -37,9 +36,7 @@
 {{! Display this in a table format if time allows it }}
 <div>
   {{#if user.tripsRented}}
-    <br />
-    <h4>Booked trips</h4>
-    <br />
+    <h3>Booked trips</h3>
     <p>Feel free to cancel any of your booked trips</p>
     <br />
   {{/if}}
