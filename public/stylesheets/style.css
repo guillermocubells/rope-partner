@@ -114,7 +114,7 @@ footer {
 input {
   font-family: inherit;
   width: 150px;
-  color:#6a8d92;
+  color: #6a8d92;
   padding: 8px 8px 8px 16px;
   margin: 8px 8px 0px 0px;
   background-color: white;
@@ -145,6 +145,7 @@ input[type="number"] {
 }
 textarea {
   resize: none;
+  color: #6a8d92;
   font-family: inherit;
   white-space: normal;
   padding: 8px 8px 8px 16px;
@@ -165,12 +166,13 @@ select:invalid {
   color: lightgray;
 }
 option {
-  color: black;
+  color: #6a8d92;
 }
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  color: #6a8d92;
   font-family: inherit;
   width: 150px;
   padding: 8px 8px 8px 16px;
@@ -216,11 +218,13 @@ label {
 /************** Error Handling Properties - Log In**************/
 
 .error {
+  font-size: 14px;
+  font-weight: 400;
   margin-top: 16px;
   display: flex;
   text-align: left;
   flex-direction: column;
-  color:rgb(239, 82, 82)
+  color: rgb(239, 82, 82);
 }
 
 .errorhandling {

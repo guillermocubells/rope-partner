@@ -9,7 +9,7 @@ const {
 
 // Getting all the trips
 router.get("/all-trips", (req, res) => {
-  Trip.find({}).then((trips) => {
+  Trip.find({ spaces: { $gt: 0 } }).then((trips) => {
     res.render("trip/all-trips", { trips });
   });
 });
@@ -22,9 +22,24 @@ router.get("/add", isLoggedIn, (req, res) => {
 // Acordarse de incluir el validor --> Logged In
 router.post("/add", isLoggedIn, (req, res) => {
   const { location, activity_type, level, spaces, description } = req.body;
-  //   console.log("hello");
-  //   const authorArray = authors.split(",").map((author) => author.trim());
-
+  if (location.length < 3) {
+    return res.status(400).render("trip/add-trip", {
+      errorMessage: "Please enter a valid location",
+      ...req.body,
+    });
+  }
+  if (spaces < 1) {
+    return res.status(400).render("trip/add-trip", {
+      errorMessage: "As you wish, you can go alone then.",
+      ...req.body,
+    });
+  }
+  if (spaces > 5) {
+    return res.status(400).render("trip/add-trip", {
+      errorMessage: "That's a big party! We recommend more contained trips",
+      ...req.body,
+    });
+  }
   Trip.create({
     location,
     activity_type,
@@ -32,14 +47,7 @@ router.post("/add", isLoggedIn, (req, res) => {
     spaces,
     description,
   })
-    // Un posible metodo
-    // .then((createdTrip) => {
-    //   res.render("trip/add-trip", { createdTrip });
-    // })
-
-    // Un posible segundo metodo que combina la creacion y la actualizacion
     .then((createdTrip) => {
-      //   console.log(req.session.user); Little bit of debuggin here
       User.findByIdAndUpdate(
         req.session.user,
         {
@@ -69,11 +77,6 @@ router.get("/:tripId", (req, res) => {
   //   Should add a .then and a catch for validation, later on
 });
 
-// Esta parte seguramente se pueda borrar
-// router.get("/:tripId/request", isLoggedIn, (req, res) => {
-//   res.render("trip/request", { id: req.params.tripId });
-// });
-
 router.get("/:tripId/request", isLoggedIn, (req, res) => {
   const isValidTripId = isValidObjectId(req.params.tripId);
 
@@ -96,10 +99,9 @@ router.get("/:tripId/request", isLoggedIn, (req, res) => {
       $inc: { spaces: -1 },
     }).then((updatedTrip) => {
       User.findByIdAndUpdate(req.session.user, {
-        //maybe it is userId beaware
         $push: { tripsRented: trip._id },
       }).then(() => {
-        res.redirect(`/user/${req.session.user}`); //maybe the userId can go here
+        res.redirect(`/user/${req.session.user}`);
       });
     });
   });
@@ -108,7 +110,6 @@ router.get("/:tripId/request", isLoggedIn, (req, res) => {
   console.log(req.session.user);
 });
 
-// // Acordarse de incluir el validor --> Logged In
 router.get("/:tripId/cancel", isLoggedIn, async (req, res) => {
   //   console.log(req.params);
   const { tripId } = req.params;

@@ -2,7 +2,6 @@
 <p class="color-deep-taupe"> For people to join you. Or otherwise ride
   <br /> alone as far as your camel can get you</p>
 {{!-- <img src = "/public/images/camel-ride-1.png" alt="My Happy SVG"/> --}}
-<br />
 {{! Include the form in a table to give it the right format }}
 <div class="layout">
   <form class="formstyle" action="/trip/add" method="post">
@@ -20,6 +19,7 @@
           id="location"
           name="location"
           placeholder="Location"
+          maxlength="20"
         />
       </label>
       <label for="activity_type">
@@ -60,6 +60,11 @@
         <textarea maxlength="200"type="text"id="description"name="description" placeholder="Description"></textarea>
       </label>
       <button class="button" type="submit">Create your trip</button>
+    <div class ="error">
+    {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+  </div>
     </div>
   </form>
   <br />
