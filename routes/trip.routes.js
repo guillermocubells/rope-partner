@@ -3,6 +3,7 @@ const { isValidObjectId } = require("mongoose");
 const Trip = require("../models/Trip.model");
 const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const hasBookedOrCreatedTrip = require("../middleware/hasBookedOrCreatedTrip");
 const {
   Types: { ObjectId },
 } = require("mongoose");
@@ -14,12 +15,10 @@ router.get("/all-trips", (req, res) => {
   });
 });
 
-// Creating a trip -- Acordarse de incluir el validador --> Logged In
 router.get("/add", isLoggedIn, (req, res) => {
   res.render("trip/add-trip");
 });
 
-// Acordarse de incluir el validor --> Logged In
 router.post("/add", isLoggedIn, (req, res) => {
   const { location, activity_type, level, spaces, description } = req.body;
   if (location.length < 3) {
@@ -83,38 +82,52 @@ router.get("/:tripId", (req, res) => {
   //   Should add a .then and a catch for validation, later on
 });
 
-router.get("/:tripId/request", isLoggedIn, (req, res) => {
-  const isValidTripId = isValidObjectId(req.params.tripId);
+router.get(
+  "/:tripId/request",
+  isLoggedIn,
+  // hasBookedOrCreatedTrip,
+  (req, res) => {
+    const isValidTripId = isValidObjectId(req.params.tripId);
 
-  if (!isValidTripId) {
-    return res.status(404).redirect("/trip/all-trips");
-  }
-
-  Trip.findById(req.params.tripId).then((trip) => {
-    if (!trip) {
+    if (!isValidTripId) {
       return res.status(404).redirect("/trip/all-trips");
     }
 
-    if (trip.spaces < 1) {
-      return res
-        .status(400)
-        .redirect(`/trip/${req.params.tripId}?error='fully booked'`);
-    }
+    Trip.findById(req.params.tripId).then((trip) => {
+      if (!trip) {
+        return res.status(404).redirect("/trip/all-trips");
+      }
 
-    Trip.findByIdAndUpdate(req.params.tripId, {
-      $inc: { spaces: -1 },
-    }).then((updatedTrip) => {
-      User.findByIdAndUpdate(req.session.user, {
-        $push: { tripsRented: trip._id },
-      }).then(() => {
-        res.redirect(`/user/${req.session.user}`);
+      if (trip.spaces < 1) {
+        return res
+          .status(400)
+          .redirect(`/trip/${req.params.tripId}?error='fully booked'`);
+      }
+      // User.findById(req.session.user,{
+      //   const { username, email, password, tripsRented } = req.body;
+  
+      // if (tripsRented.includes(trip)) {
+      //   return res.status(400).render("trip/add-trip", {
+      //     errorMessage: "You are already going on this trip you can't book it",
+      //     ...req.body,
+      //   });
+      // }
+      
+      Trip.findByIdAndUpdate(req.params.tripId, {
+        $inc: { spaces: -1 },
+      }).then((updatedTrip) => {
+        User.findByIdAndUpdate(req.session.user, {
+          $push: { tripsRented: trip._id },
+        }).then(() => {
+          res.redirect(`/user/${req.session.user}`);
+        });
       });
     });
-  });
-  //   console.log(req);
-  console.log(req.params.tripId);
-  console.log(req.session.user);
-});
+    //   console.log(req);
+    console.log(req.params.tripId);
+    console.log(req.session.user);
+  }
+);
 
 router.get("/:tripId/cancel", isLoggedIn, async (req, res) => {
   //   console.log(req.params);
