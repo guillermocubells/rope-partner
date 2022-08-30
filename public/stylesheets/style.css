@@ -265,7 +265,7 @@ label {
 }
 .camelsvg {
   display: flex;
-  margin-top: -107px;
+  margin-top: -97px;
   margin-left: 52px;
 }
 
@@ -273,6 +273,7 @@ label {
 
 .alltrips {
   display: inline-block;
+  width: 200px;
   margin: 0 auto;
   margin-top: 8px;
   margin-bottom: 16px;
@@ -285,13 +286,18 @@ label {
   background: #f5b0cb;
   border-radius: 4px;
 }
+.oneliner-location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .alltrips-subcontent {
   margin-top: 4px;
 }
 
 .create-trip-tag {
-  margin-left: 215px;
+  margin-left: 224px;
   background: white;
   color: #7a5c61;
   border-radius: 4px;
