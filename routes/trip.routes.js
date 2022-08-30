@@ -88,6 +88,7 @@ router.get(
   // hasBookedOrCreatedTrip,
   (req, res) => {
     const isValidTripId = isValidObjectId(req.params.tripId);
+    const { username, email, password, tripsRented } = req.body;
 
     if (!isValidTripId) {
       return res.status(404).redirect("/trip/all-trips");
@@ -103,31 +104,32 @@ router.get(
           .status(400)
           .redirect(`/trip/${req.params.tripId}?error='fully booked'`);
       }
-      // User.findById(req.session.user,{
-      //   const { username, email, password, tripsRented } = req.body;
-  
-      // if (tripsRented.includes(trip)) {
-      //   return res.status(400).render("trip/add-trip", {
-      //     errorMessage: "You are already going on this trip you can't book it",
-      //     ...req.body,
-      //   });
-      // }
-      
-      Trip.findByIdAndUpdate(req.params.tripId, {
-        $inc: { spaces: -1 },
-      }).then((updatedTrip) => {
-        User.findByIdAndUpdate(req.session.user, {
-          $push: { tripsRented: trip._id },
-        }).then(() => {
-          res.redirect(`/user/${req.session.user}`);
+
+      // User.findOne({ $or: [{ tripsRented }] }).then((found) => {
+      //   // If the user is found, send the message username is taken
+      //   if (!found) {
+      //     return res.status(400).redirect("trip/single-trip", {
+      //       errorMessage: "You are part of this trip you can't book it",
+      //       ...req.body,
+      //     });
+      //   }
+
+        Trip.findByIdAndUpdate(req.params.tripId, {
+          $inc: { spaces: -1 },
+        }).then((updatedTrip) => {
+          User.findByIdAndUpdate(req.session.user, {
+            $push: { tripsRented: trip._id },
+          }).then(() => {
+            res.redirect(`/user/${req.session.user}`);
+          });
         });
       });
+      //   console.log(req);
+      console.log(req.params.tripId);
+      console.log(req.session.user);
     });
-    //   console.log(req);
-    console.log(req.params.tripId);
-    console.log(req.session.user);
-  }
-);
+//   }
+// );
 
 router.get("/:tripId/cancel", isLoggedIn, async (req, res) => {
   //   console.log(req.params);
