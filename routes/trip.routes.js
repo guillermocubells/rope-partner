@@ -105,31 +105,32 @@ router.get(
           .redirect(`/trip/${req.params.tripId}?error='fully booked'`);
       }
 
-      User.findOne({ $or: [{ tripsRented }] }).then((found) => {
-        // If the user is found, send the message username is taken
-        if ((found = trip._id)) {
-          return res.status(404).redirect("trip/single-trip", {
-            errorMessage: "You are part of this trip you can't book it",
-            ...req.body,
-          });
-        }
+      // User.findOne({ $or: [{ tripsRented }] }).then((found) => {
+      //   // If the user is found, send the message username is taken
+      //   if ((found = trip._id)) {
+      //     return res.status(404).redirect("trip/single-trip", {
+      //       errorMessage: "You are part of this trip you can't book it",
+      //       ...req.body,
+      //     });
+      //   }
 
-        Trip.findByIdAndUpdate(req.params.tripId, {
-          $inc: { spaces: -1 },
-        }).then((updatedTrip) => {
-          User.findByIdAndUpdate(req.session.user, {
-            $push: { tripsRented: trip._id },
-          }).then(() => {
-            res.redirect(`/user/${req.session.user}`);
-          });
+      Trip.findByIdAndUpdate(req.params.tripId, {
+        $inc: { spaces: -1 },
+      }).then((updatedTrip) => {
+        User.findByIdAndUpdate(req.session.user, {
+          $push: { tripsRented: trip._id },
+        }).then(() => {
+          res.redirect(`/user/${req.session.user}`);
         });
       });
-      //   console.log(req);
-      console.log(req.params.tripId);
-      console.log(req.session.user);
     });
+    //   console.log(req);
+    console.log(req.params.tripId);
+    console.log(req.session.user);
   }
 );
+//   }
+// );
 
 router.get("/:tripId/cancel", isLoggedIn, async (req, res) => {
   //   console.log(req.params);
