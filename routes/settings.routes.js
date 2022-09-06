@@ -12,7 +12,7 @@ router.get("/", isLoggedIn, (req, res) => {
   //   user: user,
   //   userId: req.params.userId,
   // });
-  res.redirect(`/user/${req.session.user}`)
+  res.redirect(`/user/${req.session.user}`);
 });
 
 router.get("/update-user", isLoggedIn, async (req, res) => {
@@ -62,7 +62,7 @@ router.post("/update-user", isLoggedIn, async (req, res) => {
 
   if (!aSingleUser) {
     await User.findByIdAndUpdate(req.session.user, { username, email });
-    return res.redirect("/");
+    return res.redirect(`/user/${req.session.user}`);
   }
 
   //NO can do  you have to update your user name or email because it is already taken
